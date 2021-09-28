@@ -20,20 +20,6 @@ public class CardDeliveryTest {
     }
 
     @Test
-    void shouldFillInCardOrderForm() {
-        open("http://localhost:9999");
-        $("[data-test-id='city'] input").setValue("Магадан");
-        $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("[data-test-id='date'] input").setValue(meetingDay(3));
-        $("[data-test-id='name'] input").setValue("Владимир Ленин");
-        $("[data-test-id='phone'] input").setValue("+79101112134");
-        $("[data-test-id='agreement']").click();
-        $(By.className("button")).click();
-        $(withText("Успешно!")).shouldBe(visible, Duration.ofSeconds(15));
-        $("[data-test-id='notification'] .notification__content")
-                .shouldHave(exactText("Встреча успешно забронирована на " + meetingDay(3)));
-    }
-    @Test
     void shouldFillInDropDownListCity() {
         open("http://localhost:9999");
         $("[data-test-id='city'] input").setValue("Ма");
@@ -47,8 +33,9 @@ public class CardDeliveryTest {
         $(By.className("button")).click();
         $(withText("Успешно!")).shouldBe(visible, Duration.ofSeconds(15));
         $("[data-test-id='notification'] .notification__content")
-               .shouldHave(exactText("Встреча успешно забронирована на " + meetingDay(3)));
+                .shouldHave(exactText("Встреча успешно забронирована на " + meetingDay(3)));
     }
+
     @Test
     void shouldFillInDropDownListDate() {
         open("http://localhost:9999");
