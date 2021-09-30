@@ -40,9 +40,10 @@ public class CardDeliveryTest {
     void shouldFillInDropDownListDate() {
         open("http://localhost:9999");
         $("[data-test-id='city'] input").setValue("Магадан");
-        $(".icon-button__content .icon_name_calendar").click();
         String meetingDay = LocalDate.now().plusDays(7).format(ofPattern("dd.MM.yyyy"));
-        $(".calendar__day").click();
+        $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
+        $(".icon-button__content .icon_name_calendar").click();
+//        $(".calendar__day").click();
         $(".popup__content").setValue(meetingDay).click();
         $("[data-test-id='name'] input").setValue("Владимир Ленин");
         $("[data-test-id='phone'] input").setValue("+79101112134");
